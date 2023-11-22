@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.easychat.R
+import com.example.easychat.home.HomeActivity
 import com.example.easychat.login.activity.LoginActivity
+import com.example.easychat.utils.FirebaseUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,9 +15,12 @@ class MainActivity : AppCompatActivity() {
         val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        screenSplash.setKeepOnScreenCondition{false}
+        screenSplash.setKeepOnScreenCondition{true}
 
-        val intent = Intent(this, LoginActivity::class.java)
+        var intent = Intent(this, LoginActivity::class.java)
+        if(FirebaseUtil().isLoggedIn()){
+            intent = Intent(this, HomeActivity::class.java)
+        }
         startActivity(intent)
         finish()
 
