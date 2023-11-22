@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.easychat.R
-import com.example.easychat.home.HomeActivity
+import com.example.easychat.home.activity.HomeActivity
 import com.example.easychat.login.activity.LoginActivity
 import com.example.easychat.utils.FirebaseUtil
 

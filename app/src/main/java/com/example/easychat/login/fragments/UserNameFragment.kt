@@ -10,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.navArgs
 import com.example.easychat.databinding.FragmentUserNameBinding
-import com.example.easychat.home.HomeActivity
+import com.example.easychat.home.activity.HomeActivity
 import com.example.easychat.login.model.UserModel
 import com.example.easychat.utils.FirebaseUtil
 import com.google.firebase.Timestamp
