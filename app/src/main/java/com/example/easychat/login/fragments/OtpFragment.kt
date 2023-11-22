@@ -31,17 +31,19 @@ class OtpFragment : Fragment() {
 
     private val mAuth = FirebaseAuth.getInstance()
 
+    private var mTimeoutSeconds = 60L
+
     private lateinit var mVerificationCode : String
     private lateinit var mForceResendingToken: ForceResendingToken
 
     private val callbacks = object : OnVerificationStateChangedCallbacks() {
         override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-            binding.pbOTP.isVisible = false
+            setInProgress(false)
             signIn(phoneAuthCredential)
         }
         override fun onVerificationFailed(firebaseException: FirebaseException) {
-            binding.pbOTP.isVisible = false
             Toast.makeText(requireContext(), "Error de verificacion", Toast.LENGTH_SHORT).show()
+            setInProgress(false)
         }
 
         override fun onCodeSent(verificationCode: String, forceResendingToken: ForceResendingToken) {
@@ -49,8 +51,7 @@ class OtpFragment : Fragment() {
             mVerificationCode = verificationCode
             mForceResendingToken = forceResendingToken
 
-            binding.pbOTP.isVisible = false
-
+            setInProgress(false)
             Toast.makeText(requireContext(), "Codigo enviado", Toast.LENGTH_SHORT).show()
         }
     }
@@ -79,11 +80,11 @@ class OtpFragment : Fragment() {
 
         startResendOTP()
 
-        binding.pbOTP.isVisible = true
+        setInProgress(true)
 
         val builder = PhoneAuthOptions.newBuilder(mAuth)
             .setPhoneNumber(phone)
-            .setTimeout(60L, TimeUnit.SECONDS)
+            .setTimeout(mTimeoutSeconds, TimeUnit.SECONDS)
             .setActivity(requireActivity())
             .setCallbacks(callbacks)
 
@@ -96,14 +97,21 @@ class OtpFragment : Fragment() {
     }
 
     private fun startResendOTP() {
-        binding.tvResend.isEnabled = false
+        setInProgress(false)
 
         val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                mTimeoutSeconds--
+                "Reenviar codigo en $mTimeoutSeconds segundos".also { binding.tvResend.text = it }
+                if (mTimeoutSeconds <= 0) {
+                    mTimeoutSeconds = 60L
+                    timer.cancel()
+                    setInProgress(true)
+                }
+            }
+        }, 0, 1000)
 
-        timer.scheduleAtFixedRate(
-            TimerTask().run{
-
-            },0,1000)
     }
 
     private fun initListeners() {
@@ -112,16 +120,20 @@ class OtpFragment : Fragment() {
 
             val credential = PhoneAuthProvider.getCredential(mVerificationCode, enterOtp)
             signIn(credential)
-            binding.pbOTP.isVisible = true
+            setInProgress(true)
+        }
+
+        binding.tvResend.setOnClickListener {
+            requestOTP(mPhone, true)
         }
     }
 
     private fun signIn(phoneAuthCredential: PhoneAuthCredential) {
-        binding.pbOTP.isVisible = true
+        setInProgress(true)
 
         mAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener{result ->
             if (result.isSuccessful){
-                binding.pbOTP.isVisible = false
+                setInProgress(false)
                 findNavController().navigate(
                     OtpFragmentDirections.actionOtpFragmentToUserNameFragment(mPhone)
                 )
@@ -129,6 +141,10 @@ class OtpFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error de autentificacion", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun setInProgress(it : Boolean){
+        binding.pbOTP.isVisible = it
+        binding.btnNext.isEnabled = !it
     }
 }
 

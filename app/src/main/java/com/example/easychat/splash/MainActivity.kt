@@ -1,9 +1,10 @@
-package com.example.easychat
+package com.example.easychat.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.easychat.R
 import com.example.easychat.login.activity.LoginActivity
 
 class MainActivity : AppCompatActivity() {

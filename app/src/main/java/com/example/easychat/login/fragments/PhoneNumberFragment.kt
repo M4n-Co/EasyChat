@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.easychat.databinding.FragmentPhoneNumberBinding
@@ -25,6 +26,7 @@ class PhoneNumberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setInProgress(false)
         initUI()
 
     }
@@ -54,15 +56,22 @@ class PhoneNumberFragment : Fragment() {
                 binding.etPhoneNumber.error = "numero invalido"
                 binding.etPhoneNumber.requestFocus()
             }else{
+                setInProgress(true)
                 val phone = binding.ccpCodePhone.fullNumberWithPlus
                 findNavController().navigate(
                     PhoneNumberFragmentDirections.actionPhoneNumberFragmentToOtpFragment(
                         phone.toString()
                     )
                 )
+                setInProgress(false)
             }
 
         }
+    }
+
+    private fun setInProgress(it : Boolean){
+        binding.pbPhoneNumber.isVisible = it
+        binding.btnSendOTP.isEnabled = !it
     }
 
 }
