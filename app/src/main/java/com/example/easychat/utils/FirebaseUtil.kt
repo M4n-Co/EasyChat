@@ -1,12 +1,13 @@
 package com.example.easychat.utils
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseUtil {
 
-     private fun currentUserId(): String? {
+    fun currentUserId(): String? {
         return FirebaseAuth.getInstance().uid
     }
 
@@ -19,5 +20,9 @@ class FirebaseUtil {
 
     fun currentUserDetails():DocumentReference{
         return FirebaseFirestore.getInstance().collection("users").document(currentUserId()!!)
+    }
+
+    fun allUserCollectionReference() : CollectionReference{
+        return FirebaseFirestore.getInstance().collection("users")
     }
 }

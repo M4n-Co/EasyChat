@@ -62,6 +62,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
 
+    //firebase ui
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+
     //SplashScreen
     implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
 
