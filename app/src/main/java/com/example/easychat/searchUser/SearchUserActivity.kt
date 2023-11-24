@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.easychat.R
 import com.example.easychat.databinding.ActivitySearchUserBinding
 import com.example.easychat.model.UserModel
 import com.example.easychat.searchUser.adapterAndHolder.SearchUserAdapter
@@ -48,7 +49,7 @@ class SearchUserActivity : AppCompatActivity() {
             if (username.isNotEmpty() && username.length >= 5){
                 setupSearchRecyclerView(username)
             }else{
-                binding.etSearchUser.error = "Nombre invalido"
+                binding.etSearchUser.error = getString(R.string.error_name)
             }
         }
     }

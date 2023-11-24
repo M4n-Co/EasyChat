@@ -2,4 +2,23 @@
     <string name="app_name">EasyChat</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="search_user">Buscar usuario</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="enter_otp">Ingresa tu codigo de verificacion</string>
+    <string name="otp">OTP</string>
+    <string name="resend_otp">Reenviar OTP en</string>
+    <string name="sec">seg</string>
+    <string name="next">Siguiente</string>
+    <string name="enter_phone">Igresa tu numero de telefonico</string>
+    <string name="phone_number">Numero de telefono</string>
+    <string name="send_otp">Enviar OTP</string>
+    <string name="enter_username">Ingresa tu nombre de usuario de 5 a 10 caracteres</string>
+    <string name="finish_signup">Finalizar</string>
+    <string name="error_name">Nombre invalido</string>
+    <string name="me">(Yo)</string>
+    <string name="verification_error">Error de verificacion</string>
+    <string name="code_sent">Codigo enviado</string>
+    <string name="auth_error">Error de autentificacion</string>
+
 </resources>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.easychat.R
 import com.example.easychat.databinding.FragmentOtpBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -36,13 +37,15 @@ class OtpFragment : Fragment() {
     private lateinit var mVerificationCode : String
     private lateinit var mForceResendingToken: ForceResendingToken
 
+    private lateinit var mTimer : Timer
+
     private val callbacks = object : OnVerificationStateChangedCallbacks() {
         override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
             setInProgress(false)
             signIn(phoneAuthCredential)
         }
         override fun onVerificationFailed(firebaseException: FirebaseException) {
-            Toast.makeText(requireContext(), "Error de verificacion", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.verification_error), Toast.LENGTH_SHORT).show()
             setInProgress(false)
         }
 
@@ -52,7 +55,7 @@ class OtpFragment : Fragment() {
             mForceResendingToken = forceResendingToken
 
             setInProgress(false)
-            Toast.makeText(requireContext(), "Codigo enviado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.code_sent), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -99,15 +102,16 @@ class OtpFragment : Fragment() {
     private fun startResendOTP() {
         setInProgress(false)
 
-        val timer = Timer()
-        timer.scheduleAtFixedRate(object : TimerTask() {
+        mTimer = Timer()
+        mTimer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 mTimeoutSeconds--
-                "Reenviar codigo en $mTimeoutSeconds segundos".also { binding.tvResend.text = it }
+                val resendOtp = "${getString(R.string.resend_otp)} $mTimeoutSeconds ${getString(R.string.sec)}"
+                binding.tvResend.text = resendOtp
                 if (mTimeoutSeconds <= 0) {
                     mTimeoutSeconds = 60L
-                    timer.cancel()
-                    setInProgress(true)
+                    mTimer.cancel()
+                    binding.tvResend.isEnabled = true
                 }
             }
         }, 0, 1000)
@@ -134,11 +138,12 @@ class OtpFragment : Fragment() {
         mAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener{result ->
             if (result.isSuccessful){
                 setInProgress(false)
+                mTimer.cancel()
                 findNavController().navigate(
                     OtpFragmentDirections.actionOtpFragmentToUserNameFragment(mPhone)
                 )
             }else{
-                Toast.makeText(requireContext(), "Error de autentificacion", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.auth_error), Toast.LENGTH_SHORT).show()
             }
         }
     }

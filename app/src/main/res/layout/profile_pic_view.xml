@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/ivProfilePic"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:src="@drawable/ic_user"
             app:tint="@color/light_gray"/>
 

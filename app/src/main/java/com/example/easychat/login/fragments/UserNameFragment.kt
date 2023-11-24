@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.navArgs
+import com.example.easychat.R
 import com.example.easychat.databinding.FragmentUserNameBinding
 import com.example.easychat.home.activity.HomeActivity
 import com.example.easychat.model.UserModel
@@ -50,7 +51,7 @@ class UserNameFragment : Fragment() {
         val username = binding.etUsername.text.toString().trim()
 
         if (username.isEmpty() || username.length<=4 ){
-            binding.etUsername.error = "Formato incorrecto"
+            binding.etUsername.error = getString(R.string.error_name)
             return
         }
 

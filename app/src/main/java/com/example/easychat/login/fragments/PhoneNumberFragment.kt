@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
+import com.example.easychat.R
 import com.example.easychat.databinding.FragmentPhoneNumberBinding
 
 class PhoneNumberFragment : Fragment() {
@@ -53,7 +54,7 @@ class PhoneNumberFragment : Fragment() {
         binding.btnSendOTP.setOnClickListener {
 
             if (!binding.ccpCodePhone.isValidFullNumber){
-                binding.etPhoneNumber.error = "numero invalido"
+                binding.etPhoneNumber.error = getString(R.string.error_name)
                 binding.etPhoneNumber.requestFocus()
             }else{
                 setInProgress(true)
