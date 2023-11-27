@@ -1,9 +1,11 @@
 package com.example.easychat.utils
 
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
 
 class FirebaseUtil {
     companion object{
@@ -45,5 +47,21 @@ class FirebaseUtil {
         }else{
             userTwo+"_"+userOne
         }
+    }
+
+    fun allChatroomCollectionReference():CollectionReference{
+        return FirebaseFirestore.getInstance().collection(CHATROOM_COLLECTIONS)
+    }
+
+    fun getOtherUserFromChatroom(userIds: List<String?>) : DocumentReference{
+        return if (userIds[0] == currentUserId()){
+            allUserCollectionReference().document(userIds[1]!!)
+        }else{
+            allUserCollectionReference().document(userIds[0]!!)
+        }
+    }
+
+    fun getTime(timestamp: Timestamp):String{
+        return SimpleDateFormat("HH:MM").format(timestamp.toDate())
     }
 }

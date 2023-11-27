@@ -10,7 +10,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 class ChatAdapter(options : FirestoreRecyclerOptions<ChatMessageModel>) :
     FirestoreRecyclerAdapter<ChatMessageModel, ChatViewHolder>(options){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_message, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chatroom_messages, parent, false)
         return ChatViewHolder(view)
     }
 

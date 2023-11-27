@@ -16,9 +16,10 @@
     <string name="enter_username">Ingresa tu nombre de usuario de 5 a 10 caracteres</string>
     <string name="finish_signup">Finalizar</string>
     <string name="error_name">Nombre invalido</string>
-    <string name="me">(Yo)</string>
+    <string name="me">(Tu)</string>
     <string name="verification_error">Error de verificacion</string>
     <string name="code_sent">Codigo enviado</string>
     <string name="auth_error">Error de autentificacion</string>
+    <string name="last_message">ultimo mensaje</string>
 
 </resources>

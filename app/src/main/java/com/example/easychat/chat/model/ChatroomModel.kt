@@ -7,5 +7,5 @@ data class ChatroomModel(
     val userIds : List<String?>? = null,
     var lastMessageTimestamp: Timestamp? = null,
     var lastMessageSenderId : String?= null,
-    val lastMessage : String? = null
+    var lastMessage : String? = null
 )

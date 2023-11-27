@@ -4,11 +4,11 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easychat.chat.model.ChatMessageModel
-import com.example.easychat.databinding.ItemChatMessageBinding
+import com.example.easychat.databinding.ItemChatroomMessagesBinding
 import com.example.easychat.utils.FirebaseUtil
 
 class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view){
-    private val binding = ItemChatMessageBinding.bind(view)
+    private val binding = ItemChatroomMessagesBinding.bind(view)
 
     fun bind(chatMessageModel: ChatMessageModel){
         if (chatMessageModel.senderId == FirebaseUtil().currentUserId()){
