@@ -7,5 +7,5 @@ data class UserModel(
     var username: String? = null,
     var createdTimestamp: Timestamp? = null,
     var userId: String? = null,
-    //var fcmToken: String
+    var fcmToken: String? = null
 )

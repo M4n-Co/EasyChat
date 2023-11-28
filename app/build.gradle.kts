@@ -61,6 +61,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     //firebase ui
     implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
@@ -70,4 +71,7 @@ dependencies {
 
     //Country Code Picker
     implementation("com.hbb20:ccp:2.5.0")
+
+    //OkHtttp
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 }

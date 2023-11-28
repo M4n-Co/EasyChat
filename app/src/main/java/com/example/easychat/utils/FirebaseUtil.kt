@@ -6,6 +6,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
+import java.util.Locale
 
 class FirebaseUtil {
     companion object{
@@ -62,6 +63,10 @@ class FirebaseUtil {
     }
 
     fun getTime(timestamp: Timestamp):String{
-        return SimpleDateFormat("HH:MM").format(timestamp.toDate())
+        return SimpleDateFormat("hh:mm", Locale.US).format(timestamp.toDate())
+    }
+
+    fun logout(){
+        FirebaseAuth.getInstance().signOut()
     }
 }

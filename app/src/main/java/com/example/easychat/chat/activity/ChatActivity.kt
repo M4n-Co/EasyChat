@@ -48,13 +48,19 @@ class ChatActivity : AppCompatActivity() {
     private fun setUpChatMessages() {
 
         val query : Query = FirebaseUtil().getChatroomMessageReference(mChatroomId)
-            .orderBy("lastMessageTimestamp", Query.Direction.ASCENDING)
+            .orderBy("lastMessageTimestamp", Query.Direction.DESCENDING)
 
         val options = FirestoreRecyclerOptions.Builder<ChatMessageModel>()
             .setQuery(query, ChatMessageModel::class.java).build()
 
         mAdapter = ChatAdapter(options)
-        binding.rvMessages.layoutManager = LinearLayoutManager(this)
+
+        val linearLayoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.VERTICAL,
+            true)
+
+        binding.rvMessages.layoutManager = linearLayoutManager
         binding.rvMessages.adapter = mAdapter
         mAdapter.startListening()
 

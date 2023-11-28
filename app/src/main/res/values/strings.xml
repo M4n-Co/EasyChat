@@ -21,5 +21,11 @@
     <string name="code_sent">Codigo enviado</string>
     <string name="auth_error">Error de autentificacion</string>
     <string name="last_message">ultimo mensaje</string>
+    <string name="update_info">Guardar</string>
+    <string name="ready">Listo!</string>
+    <string name="error">Error</string>
+    <string name="logout">Cerrar sesion</string>
+    <string name="accept_notifications">Recibiras una notificacion cada que te envien un mensaje</string>
+    <string name="no_notifications">No recibiras notificaciones</string>
 
 </resources>
