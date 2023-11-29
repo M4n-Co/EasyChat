@@ -187,15 +187,17 @@ class ChatActivity : AppCompatActivity() {
 
         val request = Request.Builder()
             .url(url)
-            .patch(body)
+            .post(body)
             .header("Authorization","Bearer AAAAYCcYYUs:APA91bGeMi9pGsdgHrKVgonxQjZVZAfzg4-o6xdUqOUYtTPaQ01oEaubreOt8FaUYpSuooSmWs-Hj42BdK_XrxGPmoGfKXx0d-idFdxmeF7TbQNJTKFY7kXSljWVN0E8HDpyu9mA_qQQ")
             .build()
 
         client.newCall(request).enqueue(object : Callback{
             override fun onFailure(call: Call, e: IOException) {
+
             }
 
             override fun onResponse(call: Call, response: Response) {
+
             }
 
         })

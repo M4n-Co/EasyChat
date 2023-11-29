@@ -72,6 +72,6 @@ dependencies {
     //Country Code Picker
     implementation("com.hbb20:ccp:2.5.0")
 
-    //OkHtttp
+    //OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
 }
